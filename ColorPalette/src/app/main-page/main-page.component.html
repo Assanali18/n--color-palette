@@ -1,0 +1,38 @@
+<div class="routLink">
+    <a class="desc" [routerLink] = "['/create']">Let's create your palette!</a>
+</div>
+<div class="search">
+    <div class="code">
+        <input 
+        type="text" id="search-input" value = "skyblue"  placeholder="Color code or name"  
+        [(ngModel)]="currentColor" (ngModelChange)="handleKeyUp($event)" 
+        autofocus 
+        >
+        <span class="search-color" [style.background-color]="currentColor"></span>
+    </div>
+    
+    <label class="image" for="search-image">
+        <input type="file" id="search-image" hidden (change)="onFileChange($event)">
+        <i class="fas fa-image"></i>
+      </label>
+    <select name="" id="palette-count" [(ngModel)]="currentCount"  (change)="handleChange(currentCount)">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option selected value="6">6</option>
+    </select>
+
+</div>
+
+<app-image-palette #childComponent (colorChangeRequest)="handleColorChange($event)"></app-image-palette>
+
+<app-palette-display *ngFor="let palette of palettes" [palette]="palette" (colorChangeRequest)="handleColorChange($event)"></app-palette-display>
+
+
+
+
+
+
+  
