@@ -39,17 +39,15 @@
 <app-image-palette #childComponent [parentType]="'createPage'" (colorChangeRequest)="handleChangeColor($event)" ></app-image-palette>
 <app-palette-display  [palette]="allColors" [parentType]="'createPage'" [type]="currentMode" (colorChangeRequest)="handleChangeColor($event)"></app-palette-display>
 
-
-
-		<div class="options">
-			<input  [(ngModel)]="paletteName" type="text" id="download-name" placeholder="filename" value="palette">
-		</div>
-		<div class="options">
-			<select [(ngModel)]="selectedFormat" name="" id="download-format">
-				<option value="png">PNG</option>
-				<option value="svg">SVG</option>
-				<option value="css">CSS</option>
-				<option value="json">Json</option>
-			</select>
-			<button class="btn" id="download-btn" (click)="downloadPalette(selectedFormat, paletteName)">Download </button>
-		</div>
+<div class="options">
+    <input  [(ngModel)]="paletteName" type="text" id="download-name" placeholder="filename" value="palette">
+</div>
+<div class="options">
+    <select [(ngModel)]="selectedFormat" name="" id="download-format">
+        <option value="png">PNG</option>
+        <option value="svg">SVG</option>
+        <option value="css">CSS</option>
+        <option value="json">Json</option>
+    </select>
+    <button class="btn" id="download-btn" (click)="downloadPalette(selectedFormat, paletteName)">Download </button>
+</div>

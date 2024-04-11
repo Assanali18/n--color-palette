@@ -9,7 +9,6 @@
         >
         <span class="search-color" [style.background-color]="currentColor"></span>
     </div>
-    
     <label class="image" for="search-image">
         <input type="file" id="search-image" hidden (change)="onFileChange($event)">
         <i class="fas fa-image"></i>
@@ -22,7 +21,6 @@
         <option value="5">5</option>
         <option selected value="6">6</option>
     </select>
-
 </div>
 
 <app-image-palette #childComponent [parentType]="'mainPage'" (colorChangeRequest)="handleChangeColor($event)"></app-image-palette>

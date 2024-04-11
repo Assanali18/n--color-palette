@@ -1,74 +1,70 @@
 import { Component, EventEmitter, Input, Output, QueryList, ViewChildren } from '@angular/core';
 import { PaletteService } from '../palette.service';
-import { ColorResponse, SimplifiedColor } from '../interfaces';
+import { SimplifiedColor } from '../interfaces';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ColorPickerDirective, ColorPickerModule } from 'ngx-color-picker';
 
 @Component({
-  selector: 'app-palette-display',
-  standalone: true,
-  imports: [CommonModule, FormsModule, ColorPickerModule],
-  templateUrl: './palette-display.component.html',
-  styleUrl: './palette-display.component.css'
+	selector: 'app-palette-display',
+	standalone: true,
+	imports: [
+		CommonModule,
+		FormsModule, 
+		ColorPickerModule
+	],
+	templateUrl: './palette-display.component.html',
+	styleUrl: './palette-display.component.css'
 })
 
 export class PaletteDisplayComponent {
-	@Input() palette!:any;
+	@Input() palette!: any;
 	@Input() parentType: any;
-	@Input() type!:string;
-	@Output() colorChangeRequest = new EventEmitter<string>(); 
+	@Input() type!: string;
+	@Output() colorChangeRequest = new EventEmitter<string>();
 	@ViewChildren('colorPickerInput') colorPickerInputs!: QueryList<ColorPickerDirective>;
-	color:string = '';
+	color: string = '';
 
-	constructor(private colorService: PaletteService){}
+	constructor(private colorService: PaletteService) { }
 
 	get colors() {
 		return this.parentType === 'mainPage' ? this.palette.colors : this.palette;
 	}
-
-	get mode(){
-		return this.parentType === 'mainPage' ? this.palette.mode: this.type;
+	get mode() {
+		return this.parentType === 'mainPage' ? this.palette.mode : this.type;
 	}
 
 	openColorPicker(index: number): void {
-        const colorPickerInput = this.colorPickerInputs.toArray()[index];
-        colorPickerInput.cpToggleChange.emit(true);
-    }
-
+		const colorPickerInput = this.colorPickerInputs.toArray()[index];
+		colorPickerInput.cpToggleChange.emit(true);
+	}
 	copyToClipboard(text: string): void {
-		navigator.clipboard.writeText(text).then(() => {
-		  console.log('Текст скопирован в буфер обмена');
-		}).catch(err => {
-		  console.error('Ошибка при копировании в буфер обмена: ', err);
-		});
-	  }
-	  requestColorChange(newColor: string): void {
-		this.colorChangeRequest.emit(newColor); 
-	  }
+		navigator.clipboard.writeText(text);
+	}
+	requestColorChange(newColor: string): void {
+		this.colorChangeRequest.emit(newColor);
+	}
 
-	  toggleActive(event: MouseEvent) : void{
+	toggleActive(event: MouseEvent): void {
 		const clickedElement = event.currentTarget as HTMLElement;
-		
-		
 		if (clickedElement.classList.contains('dots')) {
 			clickedElement.classList.toggle('active');
 		}
 	}
 
-	downloadPalettePNG(colors:SimplifiedColor[], name:string){
+	downloadPalettePNG(colors: SimplifiedColor[], name: string) {
 		this.colorService.downloadPalettePNG(colors, name);
 	}
 
-	downloadPaletteSVG(colors:SimplifiedColor[], name:string){
+	downloadPaletteSVG(colors: SimplifiedColor[], name: string) {
 		this.colorService.downloadPaletteSVG(colors, name);
 	}
 
-	downloadPaletteCSS(colors:SimplifiedColor[], name:string){
+	downloadPaletteCSS(colors: SimplifiedColor[], name: string) {
 		this.colorService.downloadPaletteCSS(colors, name);
 	}
 
-	downloadPaletteJSON(colors:SimplifiedColor[], name:string){
+	downloadPaletteJSON(colors: SimplifiedColor[], name: string) {
 		this.colorService.downloadPaletteJSON(colors, name);
 	}
 }

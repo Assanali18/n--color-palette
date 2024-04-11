@@ -1,111 +1,91 @@
-.palette-colors {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-  }
-  
-  .color-block {
-    width: 50px; /* Размер квадратного блока */
-    height: 50px; /* Размер квадратного блока */
-    margin-right: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .color-name {
-    color: white; /* Цвет текста, может потребоваться изменить в зависимости от яркости фона */
-    font-size: 12px; /* Размер текста */
-    text-shadow: 0 0 3px #000; /* Тень для текста, чтобы улучшить читаемость на ярких фонах */
-  }
-  
-  .label{
-      width: 100%;
-      text-transform: capitalize;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--secondary-color);
-      text-align: center;
-      margin-bottom: 10px;
-      padding-top: 50px;
-      padding-bottom: 25px;
-  }
-  
-  .palette{
-      width: 100%;
-      position: relative;
-      display: flex;
-      gap: 4px;
-      margin-bottom: 20px;
-      padding-bottom: 25px;
-  }
-  
-  .palette .color{
-      position: relative;
-      width: 100%;
-      height: 150px;
-      background-color: red;
-      border-radius: 20px;
-  }
-  
-  .palette .color .overlay{
-      width: 100%;
-      height: 100%;
-      font-size: 12px;
-      font-weight: 500;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: all 0.15s ease-in;
-  }
-  
-  .palette .color:hover .overlay{
-      opacity: 1;
-  }
-  
-  .palette .color .icons{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 5px;
-      gap:12px;
-      color:var(--tertiary-color);
-  }
-  .palette .color .icons i{
-      pointer-events: none;
-  }
-  
-  .palette .color .icons div{
-      width: 30px;
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      background-color: rgba(0,0,0,0.1);
-  }
-  
-  .palette .color .code{
-      color: var(--tertiary-color);
-      line-height: 30px;
-      width: 70px;
-      padding: 0 10px;
-  }
-  
-  .color-block {
-      width: 50px;
-      height: 50px;
-      margin: 5px;
-      display: inline-block;
-    }
+.label {
+    width: 100%;
+    text-transform: capitalize;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--secondary-color);
+    text-align: center;
+    margin-bottom: 10px;
+    padding-top: 50px;
+    padding-bottom: 25px;
+}
 
-.title__wrap{
+.palette {
+    width: 100%;
+    position: relative;
+    display: flex;
+    gap: 4px;
+    margin-bottom: 20px;
+    padding-bottom: 25px;
+}
+
+.palette .color {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    background-color: red;
+    border-radius: 20px;
+}
+
+.palette .color .overlay {
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.15s ease-in;
+}
+
+.palette .color:hover .overlay {
+    opacity: 1;
+}
+
+.palette .color .icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    gap: 12px;
+    color: var(--tertiary-color);
+}
+
+.palette .color .icons i {
+    pointer-events: none;
+}
+
+.palette .color .icons div {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.palette .color .code {
+    color: var(--tertiary-color);
+    line-height: 30px;
+    width: 70px;
+    padding: 0 10px;
+}
+
+.color-block {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    display: inline-block;
+}
+
+.title__wrap {
     position: relative;
 }
 
-.dots{
+.dots {
     position: absolute;
     right: 0;
     top: 50px;
@@ -120,7 +100,7 @@
 
 }
 
-.dots__header{
+.dots__header {
     display: flex;
     padding: 5px 15px;
     align-items: center;
@@ -128,7 +108,7 @@
 
 }
 
-.dots__content{
+.dots__content {
     width: 150%;
     border-radius: 8px;
     overflow: hidden;
@@ -138,7 +118,8 @@
     opacity: 0;
     transition: all .3s;
 }
-.dots__content li{
+
+.dots__content li {
     list-style-type: none;
     display: flex;
     align-items: center;
@@ -148,15 +129,16 @@
     padding: 8px 0;
 
 }
-.dots__content li:hover{
+
+.dots__content li:hover {
     background: #c0c0c0;
 }
 
-.dots__header.active{
+.dots__header.active {
     border-radius: 8px 0 0 8px;
 }
 
-.dots.active .dots__content{
+.dots.active .dots__content {
     display: block;
     z-index: 10;
     visibility: visible;
@@ -164,14 +146,14 @@
     right: -180%;
 }
 
-.fill-color input{
+.fill-color input {
     opacity: 0;
     width: 100%;
     height: 100%;
     position: absolute;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.fill-color{
+.fill-color {
     position: relative;
 }
