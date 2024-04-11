@@ -1,4 +1,55 @@
 <div class="routLink">
     <a class="desc" [routerLink] = "['/']">Let's explore your palette!</a>
 </div>
-<p>create-page works!</p>
+<div class="search">
+    <div class="code">
+        <input 
+        type="text" id="search-input"  placeholder="Color code or name"  
+        [(ngModel)]="currentColor" [(colorPicker)]="currentColor" (colorPickerChange)="handleChangeColor($event)" 
+        >
+        <span class="search-color" [style.background-color]="currentColor"></span>
+    </div>
+    <select name="" id="palette-type"  [(ngModel)]="currentMode"  (change)="handleChooseMode(currentMode)">
+        <option value="monochrome" >Monochrome</option>
+        <option value="monochrome-dark">Monochrome-dark</option>
+        <option value="monochrome-light">Monochrome-light</option>
+        <option value="analogic">Analogic</option>
+        <option value="complement">Complement</option>
+        <option value="analogic-complement">Analogic-Complement</option>
+        <option value="triad">Triad</option>
+        <option value="quad">Quad</option>
+    </select>
+    
+    <label class="image" for="search-image">
+        <input type="file" id="search-image" hidden (change)="onFileChange($event)">
+        <i class="fas fa-image"></i>
+      </label>
+    <select name="" id="palette-count" [(ngModel)]="currentCount"  (change)="handleChangeCount(currentCount)">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option selected value="6">6</option>
+    </select>
+
+</div>
+
+
+<app-image-palette #childComponent [parentType]="'createPage'" (colorChangeRequest)="handleChangeColor($event)" ></app-image-palette>
+<app-palette-display  [palette]="allColors" [parentType]="'createPage'" [type]="currentMode" (colorChangeRequest)="handleChangeColor($event)"></app-palette-display>
+
+
+
+		<div class="options">
+			<input  [(ngModel)]="paletteName" type="text" id="download-name" placeholder="filename" value="palette">
+		</div>
+		<div class="options">
+			<select [(ngModel)]="selectedFormat" name="" id="download-format">
+				<option value="png">PNG</option>
+				<option value="svg">SVG</option>
+				<option value="css">CSS</option>
+				<option value="json">Json</option>
+			</select>
+			<button class="btn" id="download-btn" (click)="downloadPalette(selectedFormat, paletteName)">Download </button>
+		</div>

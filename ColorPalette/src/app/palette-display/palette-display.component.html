@@ -1,17 +1,42 @@
-    <h3 class="label">{{palette.mode}}</h3>
-    <div class="palette">
-      <div *ngFor="let color of palette.colors" class="color" [style.background-color]="color.hex" >
-        <div class="overlay">
-            <div class="icons">
-                <div class="copy-color" title="Copy color code" (click)="copyToClipboard(color.hex)">
-                    <i class="far fa-copy"></i>
-                </div>
-                <div class="generate-palette" title="Generate Palette" (click)="requestColorChange(color.hex)">
-                    <i class="fas fa-palette"></i>
-                </div>
+    <div class="title__wrap">
+        <h3 class="label">{{mode}}</h3>
+        <div *ngIf="parentType === 'mainPage'" class="dots" (click)="toggleActive($event)">
+            <div class="dots__header">
+                <i class="fa-solid fa-ellipsis"></i>
             </div>
-            <div class="code" (click)="copyToClipboard(color.hex)">{{color.hex}}</div>
+            <ul class="dots__content">
+                <li (click)="downloadPalettePNG(palette.colors,palette.mode )">png</li>
+                <li (click)="downloadPaletteSVG(palette.colors,palette.mode)">svg</li>
+                <li (click)="downloadPaletteCSS(palette.colors, palette.mode)">css</li>
+                <li (click)="downloadPaletteJSON(palette.colors, palette.mode)">json</li>
+
+            </ul>
         </div>
-      </div>
     </div>
-    <hr>
+
+    <div class="palette">
+        <div  *ngFor="let color of colors; let i = index"class="color" [style.background-color]="color.hex" >
+            <div class="overlay">
+                <div class="icons">
+                    <div class="copy-color" title="Copy color code" (click)="copyToClipboard(color.hex)">
+                        <i class="far fa-copy"></i>
+                    </div>
+                    <div class="generate-palette" title="Generate Palette" (click)="requestColorChange(color.hex)">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <div *ngIf="parentType === 'createPage'" class="fill-color" title="Pick color">
+                        <i class="fa-solid fa-pen"></i>
+                        <input [(colorPicker)]="color.hex"/>
+                    </div>
+                    
+                    
+                </div>
+                <div class="code" (click)="copyToClipboard(color.hex)">{{color.hex}}</div>
+            </div>
+
+        </div>
+        </div>
+
+    <hr *ngIf="parentType === 'mainPage'" class="line">
+
+    

@@ -4,9 +4,8 @@
 <div class="search">
     <div class="code">
         <input 
-        type="text" id="search-input" value = "skyblue"  placeholder="Color code or name"  
-        [(ngModel)]="currentColor" (ngModelChange)="handleKeyUp($event)" 
-        autofocus 
+        type="text" id="search-input" value = "#a589eb"  placeholder="Color code or name"  
+        [(ngModel)]="currentColor" (ngModelChange)="handleChangeColor($event)"  
         >
         <span class="search-color" [style.background-color]="currentColor"></span>
     </div>
@@ -15,7 +14,7 @@
         <input type="file" id="search-image" hidden (change)="onFileChange($event)">
         <i class="fas fa-image"></i>
       </label>
-    <select name="" id="palette-count" [(ngModel)]="currentCount"  (change)="handleChange(currentCount)">
+    <select name="" id="palette-count" [(ngModel)]="currentCount"  (change)="handleChangeCount(currentCount)">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -26,9 +25,9 @@
 
 </div>
 
-<app-image-palette #childComponent (colorChangeRequest)="handleColorChange($event)"></app-image-palette>
+<app-image-palette #childComponent [parentType]="'mainPage'" (colorChangeRequest)="handleChangeColor($event)"></app-image-palette>
 
-<app-palette-display *ngFor="let palette of palettes" [palette]="palette" (colorChangeRequest)="handleColorChange($event)"></app-palette-display>
+<app-palette-display *ngFor="let palette of palettes" [palette]="palette" [parentType]="'mainPage'" (colorChangeRequest)="handleChangeColor($event)"></app-palette-display>
 
 
 

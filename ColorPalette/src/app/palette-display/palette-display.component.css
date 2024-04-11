@@ -44,7 +44,6 @@
       position: relative;
       width: 100%;
       height: 150px;
-      overflow: hidden;
       background-color: red;
       border-radius: 20px;
   }
@@ -58,15 +57,12 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      transform: scale(2);
       opacity: 0;
       transition: all 0.15s ease-in;
-      background-color: rgba(0,0,0,0.1);
   }
   
   .palette .color:hover .overlay{
       opacity: 1;
-      transform: scale(1);
   }
   
   .palette .color .icons{
@@ -104,3 +100,78 @@
       margin: 5px;
       display: inline-block;
     }
+
+.title__wrap{
+    position: relative;
+}
+
+.dots{
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 10;
+    background: var(--primary-color);
+    border-radius: 8px;
+
+}
+
+.dots__header{
+    display: flex;
+    padding: 5px 15px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.dots__content{
+    width: 150%;
+    border-radius: 8px;
+    overflow: hidden;
+    visibility: hidden;
+    position: absolute;
+    right: -120%;
+    opacity: 0;
+    transition: all .3s;
+}
+.dots__content li{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .3s;
+    background: var(--primary-color);
+    padding: 8px 0;
+
+}
+.dots__content li:hover{
+    background: #c0c0c0;
+}
+
+.dots__header.active{
+    border-radius: 8px 0 0 8px;
+}
+
+.dots.active .dots__content{
+    display: block;
+    z-index: 10;
+    visibility: visible;
+    opacity: 1;
+    right: -180%;
+}
+
+.fill-color input{
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    cursor:pointer;
+}
+
+.fill-color{
+    position: relative;
+}

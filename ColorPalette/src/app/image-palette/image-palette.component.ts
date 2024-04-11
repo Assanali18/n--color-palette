@@ -11,6 +11,7 @@ declare const colorjs: any;
   styleUrl: './image-palette.component.css'
 })
 export class ImagePaletteComponent {
+  @Input() parentType: any;
   @Output() colorChangeRequest = new EventEmitter<string>(); 
   
   imageColors: string[] = []; 
@@ -29,8 +30,6 @@ export class ImagePaletteComponent {
           colorjs.prominent(img, { amount: 6, format: 'hex' }).then((colors: string[]) => {
             this.imageColors = colors;
             this.isImageExtract = true;
-            console.log(this.imageColors);
-            
           });
         };
       };

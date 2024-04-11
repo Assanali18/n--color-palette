@@ -47,6 +47,9 @@ div{
 app-main-page{
     width: 100%;
 }
+app-create-page{
+    width: 100%;
+}
 
 select{
 	width: 100%;

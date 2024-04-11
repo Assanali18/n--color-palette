@@ -22,9 +22,10 @@ import { RouterLink } from '@angular/router';
         RouterLink,
     ]
 })
+
 export class MainPageComponent implements OnInit {
 
-  currentColor: string = '';
+  currentColor: string = '#a589eb';
   currentCount: number = 6;
   palettes: ColorResponse[] = []; 
   isImageExtract: boolean = false;
@@ -41,18 +42,17 @@ export class MainPageComponent implements OnInit {
         });
   }
 
-  handleKeyUp(value: string): void {
-    if (this.isValidColor(value)) {
-      this.currentColor = value;
+  handleChangeColor(value: string): void {
+      try{
+        this.currentColor = value;
       this.colorService.fetchAllColors(this.colorToHex(this.currentColor), this.currentCount)
         .subscribe(data => { 
           this.palettes = data; 
-          console.log(this.palettes);
         });
-    }
+      }catch{}
   }
 
-  handleChange(value: number): void {
+  handleChangeCount(value: number): void {
     this.currentCount = value;
     this.colorService.fetchAllColors(this.colorToHex(this.currentColor), this.currentCount)
       .subscribe(data => { 
@@ -60,17 +60,8 @@ export class MainPageComponent implements OnInit {
       });
   }
 
-  isValidColor(value: string): boolean {
-    return /^#?[0-9A-F]{6}$/i.test(value) || /^(?:[0-9a-fA-F]{3}){1,2}$/.test(value);
-  }
-
-  colorToHex(color: string): string {
+  colorToHex(color: string): string {    
     return chroma(color).hex().slice(1);
-  }
-
-  handleColorChange(newColor: string): void {
-    this.currentColor = newColor; 
-    this.handleKeyUp(newColor); 
   }
 
   onFileChange(event:Event){

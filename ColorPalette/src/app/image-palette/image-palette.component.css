@@ -58,15 +58,12 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      transform: scale(2);
       opacity: 0;
       transition: all 0.15s ease-in;
-      background-color: rgba(0,0,0,0.1);
   }
   
   .palette .color:hover .overlay{
       opacity: 1;
-      transform: scale(1);
   }
   
   .palette .color .icons{
